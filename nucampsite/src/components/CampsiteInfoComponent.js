@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
-function RenderCampsite({campsite}){
+function RenderCampsite({campsite}) {
     return(
         <div className="col-md-5 m-1">
             <Card>
