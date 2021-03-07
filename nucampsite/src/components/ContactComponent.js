@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
     Button, Label, Col, Row } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors} from 'react-redux-form';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Link } from 'react-router-dom'
 
 const required = val => val && val.length;
-// check val will have the string value, cuz the form value return a string even tho its a number,
-// and the string is greater than 0. basically it means it will have something in it and it will return true if it does
-// false if it doesn't. if its false, that means it false the test and it will create an error.
 const maxLength = len => val => !val || (val.length <= len);
-// we want to return true if the max length has not exceeded, no val will return true cuz there is no val, if there 
-// is no value then the maxlength clearly has not been exceeded.
-// or we will also return true if the value's length is less than or equal to the max 
 const minLength = len => val => val && (val.length >= len);
-const isNumber = val => !isNaN(+val); // it will return false if this value is not a valid number
+const isNumber = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 class Contact extends Component {
 
@@ -39,67 +33,12 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // validate(firstName, lastName, phoneNum, email) {
-
-    //     const errors = {
-    //         firstName: '',
-    //         lastName: '',
-    //         phoneNum: '',
-    //         email: ''
-    //     };
-
-    //     if (this.state.touched.firstName) {
-    //         if (firstName.length < 2) {
-    //             errors.firstName = 'First name must be at least 2 characters.';
-    //         } else if (firstName.length > 15) {
-    //             errors.firstName = 'First name must be 15 or less characters.';
-    //         }
-    //     }
-
-    //     if (this.state.touched.lastName) {
-    //         if (lastName.length < 2) {
-    //             errors.lastName = 'Last name must be at least 2 characters.';
-    //         } else if (lastName.length > 15) {
-    //             errors.lastName = 'Last name must be 15 or less characters.';
-    //         }
-    //     }
-
-    //     const reg = /^\d+$/;
-    //     if (this.state.touched.phoneNum && !reg.test(phoneNum)) {
-    //         errors.phoneNum = 'The phone number should contain only numbers.';
-    //     }
-
-    //     if (this.state.touched.email && !email.includes('@')) {
-    //         errors.email = 'Email should contain a @';
-    //     }
-
-    //     return errors;
-    // }
-
-    // handleBlur = (field) => () => {
-    //     this.setState({
-    //         touched: {...this.state.touched, [field]: true}
-    //     });
-    // }
-
-    // handleInputChange(event) {
-    //     const target = event.target;
-    //     const name = target.name;
-    //     const value = target.type === 'checkbox' ? target.checked : target.value;
-    
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // }
-
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+        console.log('Current state is: ' + JSON.stringify(values));
+        alert('Current state is: ' + JSON.stringify(values));
     }
 
     render() {
-
-        // const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email);    
 
         return (
             <div className="container">
@@ -143,17 +82,15 @@ class Contact extends Component {
                                         placeholder="First Name"
                                         className="form-control"
                                         validators={{
-                                            required,
+                                            required, 
                                             minLength: minLength(2),
                                             maxLength: maxLength(15)
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
-                                        model=".firstName" 
-                                        //need to match the modal of the corresponding control component
+                                        model=".firstName"
                                         show="touched"
-                                        //show the error message if its been touched by the user. same as the touched we created
                                         component="div"
                                         messages={{
                                             required: 'Required',
@@ -175,9 +112,9 @@ class Contact extends Component {
                                             maxLength: maxLength(15)
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
-                                        model=".lastName" 
+                                        model=".lastName"
                                         show="touched"
                                         component="div"
                                         messages={{
@@ -201,9 +138,9 @@ class Contact extends Component {
                                             isNumber
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
-                                        model=".phoneNum" 
+                                        model=".phoneNum"
                                         show="touched"
                                         component="div"
                                         messages={{
@@ -226,14 +163,14 @@ class Contact extends Component {
                                             validEmail
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
-                                        model=".email" 
+                                        model=".email"
                                         show="touched"
                                         component="div"
                                         messages={{
                                             required: 'Required',
-                                            validEmail: 'Invalid email address.'
+                                            validEmail: 'Invalid email address'
                                         }}
                                     />
                                 </Col>
